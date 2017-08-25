@@ -23,10 +23,10 @@ Spring boot实现的微信点餐小型项目
 ---
 
 ###	关系图
-	![关系图](http://i.imgur.com/NCMdd2r.png)
+![关系图](http://i.imgur.com/NCMdd2r.png)
 
 --- 
 ###	部署架构
-	![部署架构](http://i.imgur.com/7qodRPG.png)
+![部署架构](http://i.imgur.com/7qodRPG.png)
 
 ----------

@@ -25,13 +25,13 @@ Ordering system in Wechat builded with Spring boot
 	-	etc
 
 ###    RelationShip
-	![关系图](http://i.imgur.com/NCMdd2r.png)
+![关系图](http://i.imgur.com/NCMdd2r.png)
 
 ----------
 
 
 ###    Depolyment and framework
-	![部署架构](http://i.imgur.com/7qodRPG.png)
+![部署架构](http://i.imgur.com/7qodRPG.png)
 
 ----------
 
