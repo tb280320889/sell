@@ -1,6 +1,7 @@
 package com.github.sherlock.sell.repository;
 
-import com.github.sherlock.sell.dataobject.ProductInfo;
+import com.github.sherlock.sell.domainobject.ProductInfo;
+import com.github.sherlock.sell.enums.ProductStatusEnum;
 import java.math.BigDecimal;
 import java.util.List;
 import org.junit.Assert;
@@ -25,11 +26,13 @@ public class ProductInfoRepositoryTest {
   @Test
   public void saveTest() throws Exception {
     ProductInfo productInfo = new ProductInfo();
-    productInfo.setProductId("123");
-    productInfo.setProductName("omelet");
+    productInfo.setProductId("12");
+    productInfo.setProductName("omele2t");
     productInfo.setProductPrice(new BigDecimal(3.0));
     productInfo.setProductStock(233);
     productInfo.setProductDescription("best for breakfast!");
+    productInfo.setProductIcon("http://xxxxxx.png");
+    productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
     productInfo.setCategoryType(2);
 
     ProductInfo result = repository.save(productInfo);

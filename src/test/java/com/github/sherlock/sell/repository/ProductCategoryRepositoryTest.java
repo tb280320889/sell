@@ -1,7 +1,7 @@
 package com.github.sherlock.sell.repository;
 
-import com.github.sherlock.sell.dataobject.ProductCategory;
-import java.util.Arrays;
+import com.github.sherlock.sell.domainobject.ProductCategory;
+import java.util.Collections;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.Assert;
@@ -30,11 +30,11 @@ public class ProductCategoryRepositoryTest {
   }
 
   @Test
-  @Transactional
+  @Transactional //FIXME need attention!
   public void saveTest() throws Exception {
     ProductCategory productCategory = new ProductCategory();
     productCategory.setCategoryId(2);
-    productCategory.setCategoryName("vegetables");
+    productCategory.setCategoryName("fruits");
     productCategory.setCategoryType(3);
     ProductCategory result = repository.save(productCategory);
     Assert.assertNotNull(result);
@@ -43,7 +43,7 @@ public class ProductCategoryRepositoryTest {
 
   @Test
   public void findByCategoryTypeIn() throws Exception {
-    List<Integer> categoryList = Arrays.asList(2, 3, 4);
+    List<Integer> categoryList = Collections.singletonList(1);
     List<ProductCategory> result = repository.findByCategoryTypeIn(categoryList);
     Assert.assertNotEquals(0, result.size());
   }

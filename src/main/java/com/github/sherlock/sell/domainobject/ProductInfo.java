@@ -1,15 +1,17 @@
-package com.github.sherlock.sell.dataobject;
+package com.github.sherlock.sell.domainobject;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * Created by TangBin on 2017/8/27.
  */
 @Entity
 @Data
+@DynamicUpdate
 public class ProductInfo {
 
   /**

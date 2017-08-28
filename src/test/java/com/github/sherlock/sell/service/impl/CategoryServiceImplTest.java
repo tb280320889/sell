@@ -1,6 +1,6 @@
 package com.github.sherlock.sell.service.impl;
 
-import com.github.sherlock.sell.dataobject.ProductCategory;
+import com.github.sherlock.sell.domainobject.ProductCategory;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
@@ -41,7 +41,8 @@ public class CategoryServiceImplTest {
 
   @Test
   public void save() throws Exception {
-    ProductCategory productCategory = new ProductCategory("fruits", 10);
+    ProductCategory productCategory = categoryService.findOne(12); //FIXME need attention!
+    productCategory.setCategoryType(15);
     ProductCategory result = categoryService.save(productCategory);
     Assert.assertNotNull(result);
   }

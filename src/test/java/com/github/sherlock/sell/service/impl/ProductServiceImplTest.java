@@ -1,6 +1,6 @@
 package com.github.sherlock.sell.service.impl;
 
-import com.github.sherlock.sell.dataobject.ProductInfo;
+import com.github.sherlock.sell.domainobject.ProductInfo;
 import com.github.sherlock.sell.enums.ProductStatusEnum;
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,8 +26,8 @@ public class ProductServiceImplTest {
 
   @Test
   public void findOne() throws Exception {
-    ProductInfo productInfo = service.findOne("123");
-    Assert.assertEquals("123", productInfo.getProductId());
+    ProductInfo productInfo = service.findOne("1234");
+    Assert.assertEquals("1234", productInfo.getProductId());
   }
 
   @Test

@@ -1,4 +1,4 @@
-package com.github.sherlock.sell.dataobject;
+package com.github.sherlock.sell.domainobject;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

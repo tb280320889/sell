@@ -1,6 +1,7 @@
 package com.github.sherlock.sell.service;
 
-import com.github.sherlock.sell.dataobject.ProductInfo;
+import com.github.sherlock.sell.domainobject.ProductInfo;
+import com.github.sherlock.sell.dto.CartDTO;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,8 +25,8 @@ public interface ProductService {
   ProductInfo save(ProductInfo productInfo);
 
   //increase stock
+  void increaseStock(List<CartDTO> cartDTOList);
 
   //decrease stock
-
-
+  void decreaseStock(List<CartDTO> cartDTOList);
 }

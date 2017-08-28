@@ -1,21 +1,25 @@
 package com.github.sherlock.sell.service.impl;
 
-import com.github.sherlock.sell.dataobject.ProductCategory;
+import com.github.sherlock.sell.domainobject.ProductCategory;
 import com.github.sherlock.sell.repository.ProductCategoryRepository;
 import com.github.sherlock.sell.service.CategoryService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by TangBin on 2017/8/27.
  */
-@Component //FIXME need attention!
+@Service //FIXME need attention!
 public class CategoryServiceImpl implements CategoryService {
 
 
-  @Autowired
-  private ProductCategoryRepository repository;
+  private final ProductCategoryRepository repository;
+
+  @Autowired //FIXME need attention!
+  public CategoryServiceImpl(ProductCategoryRepository repository) {
+    this.repository = repository;
+  }
 
   /**
    *
