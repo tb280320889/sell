@@ -44,11 +44,11 @@ public class ProductCategory {
   //  /**
 //   *
 //   */
-//  private Date createTime;
+//  private TimeStamp createTime;
 //
 //  /**
 //   *
 //   */
-//  private Date updateTime;
+//  private TimeStamp updateTime;
 
 }

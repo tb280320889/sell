@@ -3,7 +3,7 @@ package com.github.sherlock.sell.domainobject;
 import com.github.sherlock.sell.enums.OrderStatusEnum;
 import com.github.sherlock.sell.enums.PayStatusEnum;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import lombok.Data;
@@ -55,12 +55,12 @@ public class OrderMaster {
   /**
    *
    */
-  private Date createTime;
+  private Timestamp createTime;
 
   /**
    *
    */
-  private Date updateTime;
+  private Timestamp updateTime;
 
 //  @Transient //FIXME need attention!
 //  private List<OrderDetail> orderDetailList;

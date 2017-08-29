@@ -17,30 +17,30 @@ GET /sell/buyer/product/list
 ```
 {
     "code": 0,
-    "msg": "成功",
+    "msg": "success",
     "data": [
         {
-            "name": "热榜",
+            "name": "hot rank",
             "type": 1,
             "foods": [
                 {
                     "id": "123456",
-                    "name": "皮蛋粥",
+                    "name": "omelete",
                     "price": 1.2,
-                    "description": "好吃的皮蛋粥",
+                    "description": "nice breakfast",
                     "icon": "http://xxx.com",
                 }
             ]
         },
         {
-            "name": "好吃的",
+            "name": "delicious",
             "type": 2,
             "foods": [
                 {
                     "id": "123457",
-                    "name": "慕斯蛋糕",
+                    "name": "cake",
                     "price": 10.9,
-                    "description": "美味爽口",
+                    "description": "best ever",
                     "icon": "http://xxx.com",
                 }
             ]
@@ -59,12 +59,12 @@ POST /sell/buyer/order/create
 参数
 
 ```
-name: "张三"
-phone: "18868822111"
-address: "慕课网总部"
+name: "sherlock"
+phone: "233333"
+address: "github"
 openid: "ew3euwhd7sjw9diwkq" //用户的微信openid
 items: [{
-    productId: "1423113435324",
+    productId: "1234",
     productQuantity: 2 //购买数量
 }]
 
@@ -105,9 +105,9 @@ size: 10
   "data": [
     {
       "orderId": "161873371171128075",
-      "buyerName": "张三",
-      "buyerPhone": "18868877111",
-      "buyerAddress": "慕课网总部",
+      "buyerName": "sherlock ",
+      "buyerPhone": "2333333",
+      "buyerAddress": "github",
       "buyerOpenid": "18eu2jwk2kse3r42e2e",
       "orderAmount": 0,
       "orderStatus": 0,
@@ -118,9 +118,9 @@ size: 10
     },
     {
       "orderId": "161873371171128076",
-      "buyerName": "张三",
-      "buyerPhone": "18868877111",
-      "buyerAddress": "慕课网总部",
+      "buyerName": "sherlock",
+      "buyerPhone": "2333333",
+      "buyerAddress": "github",
       "buyerOpenid": "18eu2jwk2kse3r42e2e",
       "orderAmount": 0,
       "orderStatus": 0,
@@ -153,9 +153,9 @@ orderId: 161899085773669363
     "msg": "成功",
     "data": {
           "orderId": "161899085773669363",
-          "buyerName": "李四",
+          "buyerName": "Watson",
           "buyerPhone": "18868877111",
-          "buyerAddress": "慕课网总部",
+          "buyerAddress": "github",
           "buyerOpenid": "18eu2jwk2kse3r42e2e",
           "orderAmount": 18,
           "orderStatus": 0,
@@ -167,7 +167,7 @@ orderId: 161899085773669363
                 "detailId": "161899085974995851",
                 "orderId": "161899085773669363",
                 "productId": "157875196362360019",
-                "productName": "招牌奶茶",
+                "productName": "milky tea",
                 "productPrice": 9,
                 "productQuantity": 2,
                 "productIcon": "http://xxx.com",

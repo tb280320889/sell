@@ -16,8 +16,8 @@ public class ResultVOUtil {
    * @param o
    * @return
    */
-  public static ResultVO success(Object o) {
-    ResultVO objectResultVO = new ResultVO();
+  public static <T> ResultVO<T> success(T o) {
+    ResultVO<T> objectResultVO = new ResultVO<>();
     objectResultVO.setData(o);
     objectResultVO.setCode(0);
     objectResultVO.setMsg("success");

@@ -8,7 +8,9 @@ spring:
     show-sql: true
   output:
     ansi:
-      enabled: always #fixme need attention!
+      enabled: always
+#  jackson:
+#    default-property-inclusion: non_null
 server:
   context-path: /sell
 

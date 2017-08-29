@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by TangBin on 2017/8/28.
  */
 @Data
-public class ResultVO {
+public class ResultVO<T> {
 
   /**
    * response code
@@ -19,5 +19,5 @@ public class ResultVO {
   /**
    * full data
    */
-  private Object data;
+  private T data;
 }

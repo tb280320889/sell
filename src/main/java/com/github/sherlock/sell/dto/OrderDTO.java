@@ -1,10 +1,12 @@
 package com.github.sherlock.sell.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.sherlock.sell.domainobject.OrderDetail;
 import com.github.sherlock.sell.enums.OrderStatusEnum;
 import com.github.sherlock.sell.enums.PayStatusEnum;
+import com.github.sherlock.sell.utils.serializer.TimeStamp2LongSerializer;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import lombok.Data;
 
@@ -13,6 +15,8 @@ import lombok.Data;
  * Created by TangBin on 2017/8/28.
  */
 @Data
+//FIXME need attention!
+//@JsonInclude(Include.NON_NULL)
 public class OrderDTO {
 
   private String orderId;
@@ -47,13 +51,15 @@ public class OrderDTO {
 
   /**
    *
-   */
-  private Date createTime;
+   */ //FIXME need attention!
+  @JsonSerialize(using = TimeStamp2LongSerializer.class)
+  private Timestamp createTime;
 
   /**
    *
    */
-  private Date updateTime;
+  @JsonSerialize(using = TimeStamp2LongSerializer.class)
+  private Timestamp updateTime;
 
   private List<OrderDetail> orderDetailList;
 
