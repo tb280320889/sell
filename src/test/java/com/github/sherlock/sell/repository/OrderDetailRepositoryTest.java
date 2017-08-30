@@ -3,6 +3,7 @@ package com.github.sherlock.sell.repository;
 import com.github.sherlock.sell.domainobject.OrderDetail;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,7 @@ public class OrderDetailRepositoryTest {
   private OrderDetailRepository orderDetailRepository;
 
   @Test
+  @Transactional
   public void saveTest() throws Exception {
     OrderDetail orderDetail = new OrderDetail();
     orderDetail.setDetailId("12324");

@@ -34,8 +34,8 @@ public class ProductCategoryRepositoryTest {
   public void saveTest() throws Exception {
     ProductCategory productCategory = new ProductCategory();
     productCategory.setCategoryId(2);
-    productCategory.setCategoryName("fruits");
-    productCategory.setCategoryType(3);
+    productCategory.setCategoryName("vegetables");
+    productCategory.setCategoryType(4);
     ProductCategory result = repository.save(productCategory);
     Assert.assertNotNull(result);
 //    Assert.assertNotEquals(null, result);
@@ -43,7 +43,7 @@ public class ProductCategoryRepositoryTest {
 
   @Test
   public void findByCategoryTypeIn() throws Exception {
-    List<Integer> categoryList = Collections.singletonList(1);
+    List<Integer> categoryList = Collections.singletonList(3);
     List<ProductCategory> result = repository.findByCategoryTypeIn(categoryList);
     Assert.assertNotEquals(0, result.size());
   }

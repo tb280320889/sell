@@ -4,6 +4,7 @@ import com.github.sherlock.sell.domainobject.ProductInfo;
 import com.github.sherlock.sell.enums.ProductStatusEnum;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,16 +25,17 @@ public class ProductInfoRepositoryTest {
 
 
   @Test
+  @Transactional
   public void saveTest() throws Exception {
     ProductInfo productInfo = new ProductInfo();
-    productInfo.setProductId("12");
-    productInfo.setProductName("omele2t");
+    productInfo.setProductId("11");
+    productInfo.setProductName("omelet3");
     productInfo.setProductPrice(new BigDecimal(3.0));
     productInfo.setProductStock(233);
     productInfo.setProductDescription("best for breakfast!");
-    productInfo.setProductIcon("http://xxxxxx.png");
+    productInfo.setProductIcon("http://xxxxxxx.png");
     productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
-    productInfo.setCategoryType(2);
+    productInfo.setCategoryType(4);
 
     ProductInfo result = repository.save(productInfo);
     Assert.assertNotNull(result);

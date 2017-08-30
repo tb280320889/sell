@@ -2,6 +2,7 @@ package com.github.sherlock.sell.repository;
 
 import com.github.sherlock.sell.domainobject.OrderMaster;
 import java.math.BigDecimal;
+import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,6 +39,7 @@ public class OrderMasterRepositoryTest {
 
 
   @Test
+  @Transactional
   public void saveTest() throws Exception {
 
     OrderMaster orderMaster = new OrderMaster();

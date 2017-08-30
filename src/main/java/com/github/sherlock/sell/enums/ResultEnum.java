@@ -19,6 +19,7 @@ public enum ResultEnum {
   ORDER_PAY_STATUS_ERROR(17, "order pay status error"),
   CART_EMPTY(18, "cart is empty!"),
   ORDER_OWNER_ERROR(19, "openid matches failed"),
+  WECHAT_MP_ERROR(20, "weChat mp error"),
   ;
   private Integer code;
   private String message;
