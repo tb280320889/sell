@@ -36,7 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BuyerOrderController {
 
   private final OrderService orderService;
-
   private final BuyerService buyerService;
 
   @Autowired

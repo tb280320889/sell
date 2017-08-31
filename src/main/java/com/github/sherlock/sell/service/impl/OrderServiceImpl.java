@@ -13,6 +13,7 @@ import com.github.sherlock.sell.exception.SellException;
 import com.github.sherlock.sell.repository.OrderDetailRepository;
 import com.github.sherlock.sell.repository.OrderMasterRepository;
 import com.github.sherlock.sell.service.OrderService;
+import com.github.sherlock.sell.service.PayService;
 import com.github.sherlock.sell.service.ProductService;
 import com.github.sherlock.sell.utils.KeyUtil;
 import java.math.BigDecimal;
@@ -37,18 +38,19 @@ import org.springframework.util.CollectionUtils;
 public class OrderServiceImpl implements OrderService {
 
   private final ProductService productService;
-
   private final OrderDetailRepository orderDetailRepository;
-
   private final OrderMasterRepository orderMasterRepository;
+  private final PayService payService;
+
 
   @Autowired
   public OrderServiceImpl(ProductService productService,
       OrderDetailRepository orderDetailRepository,
-      OrderMasterRepository orderMasterRepository) {
+      OrderMasterRepository orderMasterRepository, PayService payService) {
     this.productService = productService;
     this.orderDetailRepository = orderDetailRepository;
     this.orderMasterRepository = orderMasterRepository;
+    this.payService = payService;
   }
 
   @Override
@@ -127,6 +129,15 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
+  public Page<OrderDTO> findList(Pageable pageable) {
+    final Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+    final List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter
+        .convert(orderMasterPage.getContent());
+
+    return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+  }
+
+  @Override
   @Transactional
   public OrderDTO cancel(OrderDTO orderDTO) {
     OrderMaster orderMaster = new OrderMaster();
@@ -163,7 +174,7 @@ public class OrderServiceImpl implements OrderService {
 
     // if paid, give refund
     if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-      //TODO
+      payService.refund(orderDTO);
     }
 
     return orderDTO;

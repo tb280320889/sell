@@ -47,7 +47,7 @@ public class WeChatController {
     log.info("#wechat web auth# get code, redirectUrl={}", redirectUrl);
 
     //2.call method
-    return "redirect: " + redirectUrl;
+    return "redirect:" + redirectUrl;
   }
 
   /**

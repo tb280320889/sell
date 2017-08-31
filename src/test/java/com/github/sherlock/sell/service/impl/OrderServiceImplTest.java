@@ -42,7 +42,7 @@ public class OrderServiceImplTest {
     //cart
     List<OrderDetail> orderDetailList = new ArrayList<>();
     OrderDetail orderDetail = new OrderDetail();
-    orderDetail.setProductId("123");
+    orderDetail.setProductId("11");
     orderDetail.setProductQuantity(1);
     orderDetailList.add(orderDetail);
 
@@ -89,6 +89,13 @@ public class OrderServiceImplTest {
     OrderDTO orderD = orderService.findOne(ORDER_ID);
     OrderDTO result = orderService.pay(orderD);
     Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+  }
+
+  @Test
+  public void listAll() throws Exception {
+    PageRequest pageRequest = new PageRequest(0, 2);
+    Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
+    Assert.assertTrue("order number should greater than zero", orderDTOPage.getTotalElements() > 0);
   }
 
 }
