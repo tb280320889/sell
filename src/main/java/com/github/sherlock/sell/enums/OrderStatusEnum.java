@@ -6,7 +6,7 @@ import lombok.Getter;
  * Created by TangBin on 2017/8/28.
  */
 @Getter
-public enum OrderStatusEnum {
+public enum OrderStatusEnum implements EnumMessage {
   NEW(0, "new order"),
   FINISHED(1, "order finished"),
   CANCEL(2, "have been canceled"),;

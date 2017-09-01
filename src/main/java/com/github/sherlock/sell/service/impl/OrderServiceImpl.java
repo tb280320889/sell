@@ -107,7 +107,7 @@ public class OrderServiceImpl implements OrderService {
     }
     List<OrderDetail> orderDetailList = orderDetailRepository.findByOrOrderId(orderId);
     if (CollectionUtils.isEmpty(orderDetailList)) {
-      throw new SellException(ResultEnum.ORDER_DETAIL_NOT_EXIST);
+      throw new SellException(ResultEnum.ORDER_NOT_EXIST);
     }
     OrderDTO orderDTO = new OrderDTO();
     BeanUtils.copyProperties(orderMaster, orderDTO);

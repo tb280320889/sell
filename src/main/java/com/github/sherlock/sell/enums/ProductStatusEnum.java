@@ -7,7 +7,7 @@ import lombok.Getter;
  */
 
 @Getter //FIXME need attention!
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements EnumMessage {
 
   UP(0, "on shelf"),
   DOWN(1, "off shelf");

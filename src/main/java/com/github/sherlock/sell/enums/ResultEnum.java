@@ -7,7 +7,8 @@ import lombok.Getter;
  */
 
 @Getter
-public enum ResultEnum {
+public enum ResultEnum implements EnumMessage {
+  SUCCESS(0, "success "),
   PARA_ERROR(1, "para is not correct "),
   PRODUCT_NOT_EXIST(10, "product not exists!"),
   PRODUCT_STOCK_ERROR(11, "invalid stock request!"),
@@ -20,13 +21,15 @@ public enum ResultEnum {
   CART_EMPTY(18, "cart is empty!"),
   ORDER_OWNER_ERROR(19, "openid matches failed"),
   WECHAT_MP_ERROR(20, "weChat mp error"),
-  WXPAY_NOTIFY_MONEY_VERIFY_ERROR(21, "wxpay_notify_money_verify_error"),
+  WXPAY_NOTIFY_MONEY_VERIFY_ERROR(21, "wxpay notify money verify error"),
+  ORDER_CANCEL_SUCCESS(22, "order cancel  successfully"),
+  ORDER_FINISH_SUCCESS(22, "order finish  successfully"),
   ;
   private Integer code;
-  private String message;
+  private String msg;
 
   ResultEnum(Integer code, String message) {
     this.code = code;
-    this.message = message;
+    this.msg = message;
   }
 }

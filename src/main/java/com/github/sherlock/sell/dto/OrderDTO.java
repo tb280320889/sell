@@ -1,9 +1,11 @@
 package com.github.sherlock.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.sherlock.sell.domainobject.OrderDetail;
 import com.github.sherlock.sell.enums.OrderStatusEnum;
 import com.github.sherlock.sell.enums.PayStatusEnum;
+import com.github.sherlock.sell.utils.EnumUtil;
 import com.github.sherlock.sell.utils.serializer.TimeStamp2LongSerializer;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -62,5 +64,16 @@ public class OrderDTO {
   private Timestamp updateTime;
 
   private List<OrderDetail> orderDetailList;
+
+
+  @JsonIgnore
+  public OrderStatusEnum getOrderStatusEnum() {
+    return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+  }
+
+  @JsonIgnore
+  public PayStatusEnum getPayStatusEnum() {
+    return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+  }
 
 }
