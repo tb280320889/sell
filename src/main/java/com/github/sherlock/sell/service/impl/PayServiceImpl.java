@@ -13,10 +13,13 @@ import com.lly835.bestpay.model.RefundRequest;
 import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.BestPayService;
 import com.lly835.bestpay.utils.JsonUtil;
-import java.math.BigDecimal;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/31.
@@ -74,10 +77,10 @@ public class PayServiceImpl implements PayService {
     final BigDecimal orderAmountFromSystem = orderDTO.getOrderAmount();
     final Double orderAmountFromWeChat = payResponse.getOrderAmount();
     if (!MathUtil
-        .priceEquals(orderAmountFromSystem, orderAmountFromWeChat)) {
+      .priceEquals(orderAmountFromSystem, orderAmountFromWeChat)) {
       log.error(
-          "#weChat pay# asynchronous notification , orderId={}, price from notification={}, price from system={} ",
-          orderId, orderAmountFromWeChat, orderAmountFromSystem.doubleValue());
+        "#weChat pay# asynchronous notification , orderId={}, price from notification={}, price from system={} ",
+        orderId, orderAmountFromWeChat, orderAmountFromSystem.doubleValue());
       throw new SellException(ResultEnum.WXPAY_NOTIFY_MONEY_VERIFY_ERROR);
     }
 

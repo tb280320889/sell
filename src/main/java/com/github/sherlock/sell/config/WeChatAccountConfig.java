@@ -1,15 +1,16 @@
 package com.github.sherlock.sell.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+
+import lombok.Data;
 
 /**
  * Created by TangBin on 2017/8/30.
  */
 
 @Data
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "weChat")
 public class WeChatAccountConfig {
 

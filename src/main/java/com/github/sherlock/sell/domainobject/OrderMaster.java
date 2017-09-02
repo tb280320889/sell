@@ -2,12 +2,16 @@ package com.github.sherlock.sell.domainobject;
 
 import com.github.sherlock.sell.enums.OrderStatusEnum;
 import com.github.sherlock.sell.enums.PayStatusEnum;
+
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * Created by TangBin on 2017/8/28.

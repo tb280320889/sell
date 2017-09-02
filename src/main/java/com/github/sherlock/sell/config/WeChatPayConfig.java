@@ -2,15 +2,16 @@ package com.github.sherlock.sell.config;
 
 import com.lly835.bestpay.config.WxPayH5Config;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by TangBin on 2017/8/31.
  */
 
-@Component
+@Configuration
 public class WeChatPayConfig {
 
   private final WeChatAccountConfig weChatAccountConfig;

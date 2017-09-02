@@ -2,9 +2,11 @@ package com.github.sherlock.sell.converter;
 
 import com.github.sherlock.sell.domainobject.OrderMaster;
 import com.github.sherlock.sell.dto.OrderDTO;
+
+import org.springframework.beans.BeanUtils;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.beans.BeanUtils;
 
 /**
  * Created by TangBin on 2017/8/29.
@@ -24,7 +26,7 @@ public class OrderMaster2OrderDTOConverter {
 
   public static List<OrderDTO> convert(List<OrderMaster> orderMasterList) {
     return orderMasterList.stream().map(OrderMaster2OrderDTOConverter::convert)
-        .collect(Collectors.toList());
+      .collect(Collectors.toList());
   }
 
 }

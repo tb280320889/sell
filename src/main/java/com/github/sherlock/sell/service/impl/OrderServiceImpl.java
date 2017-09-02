@@ -16,12 +16,7 @@ import com.github.sherlock.sell.service.OrderService;
 import com.github.sherlock.sell.service.PayService;
 import com.github.sherlock.sell.service.ProductService;
 import com.github.sherlock.sell.utils.KeyUtil;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +24,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/28.
@@ -45,8 +49,8 @@ public class OrderServiceImpl implements OrderService {
 
   @Autowired
   public OrderServiceImpl(ProductService productService,
-      OrderDetailRepository orderDetailRepository,
-      OrderMasterRepository orderMasterRepository, PayService payService) {
+                          OrderDetailRepository orderDetailRepository,
+                          OrderMasterRepository orderMasterRepository, PayService payService) {
     this.productService = productService;
     this.orderDetailRepository = orderDetailRepository;
     this.orderMasterRepository = orderMasterRepository;
@@ -73,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
       }
       // 2. accumulate every product's price
       orderAmount = productInfo.getProductPrice()
-          .multiply(new BigDecimal(orderDetail.getProductQuantity())).add(orderAmount);
+        .multiply(new BigDecimal(orderDetail.getProductQuantity())).add(orderAmount);
 
       BeanUtils.copyProperties(productInfo, orderDetail);
       orderDetail.setDetailId(KeyUtil.genUniqueKey());
@@ -91,8 +95,8 @@ public class OrderServiceImpl implements OrderService {
 
     // 4. decrease stock
     List<CartDTO> cartDTOList = orderDetailList.stream()
-        .map(it -> new CartDTO(it.getProductId(), it.getProductQuantity()))
-        .collect(Collectors.toList());
+      .map(it -> new CartDTO(it.getProductId(), it.getProductQuantity()))
+      .collect(Collectors.toList());
 
     productService.decreaseStock(cartDTOList);
 
@@ -105,7 +109,7 @@ public class OrderServiceImpl implements OrderService {
     if (orderMaster == null) {
       throw new SellException(ResultEnum.ORDER_NOT_EXIST);
     }
-    List<OrderDetail> orderDetailList = orderDetailRepository.findByOrOrderId(orderId);
+    List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId(orderId);
     if (CollectionUtils.isEmpty(orderDetailList)) {
       throw new SellException(ResultEnum.ORDER_NOT_EXIST);
     }
@@ -118,13 +122,13 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
     Page<OrderMaster> orderMasterPage = orderMasterRepository
-        .findByBuyerOpenid(buyerOpenid, pageable);
+      .findByBuyerOpenid(buyerOpenid, pageable);
 
     List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter
-        .convert(orderMasterPage.getContent());
+      .convert(orderMasterPage.getContent());
 
     return new PageImpl<>(orderDTOList, pageable,
-        orderMasterPage.getTotalElements());
+      orderMasterPage.getTotalElements());
 
   }
 
@@ -132,7 +136,7 @@ public class OrderServiceImpl implements OrderService {
   public Page<OrderDTO> findList(Pageable pageable) {
     final Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
     final List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter
-        .convert(orderMasterPage.getContent());
+      .convert(orderMasterPage.getContent());
 
     return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
   }
@@ -150,7 +154,7 @@ public class OrderServiceImpl implements OrderService {
     // analyze status of order
     if (!orderStatus.equals(OrderStatusEnum.NEW.getCode())) {
       log.error("#cancel order# order status is not correct , orderId = {} , order status = {}",
-          orderId, orderStatus);
+        orderId, orderStatus);
       throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
     }
 
@@ -168,8 +172,8 @@ public class OrderServiceImpl implements OrderService {
       throw new SellException(ResultEnum.ORDER_DETAIL_NOT_EXIST);
     }
     final List<CartDTO> cartDTOList = orderDetailList.stream()
-        .map(it -> new CartDTO(it.getProductId(), it.getProductQuantity()))
-        .collect(Collectors.toList());
+      .map(it -> new CartDTO(it.getProductId(), it.getProductQuantity()))
+      .collect(Collectors.toList());
     productService.increaseStock(cartDTOList);
 
     // if paid, give refund
@@ -187,7 +191,7 @@ public class OrderServiceImpl implements OrderService {
     // analyze order status
     if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
       log.error("#finish order# order status is not correct, orderId = {},orderStatus = {} ",
-          orderDTO.getOrderId(), orderDTO.getOrderStatus());
+        orderDTO.getOrderId(), orderDTO.getOrderStatus());
       throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
     }
     // modify order status
@@ -212,14 +216,14 @@ public class OrderServiceImpl implements OrderService {
 
     if (!orderStatus.equals(OrderStatusEnum.NEW.getCode())) {
       log.error("#pay order# order status is not correct , orderId = {}, order status = {} ",
-          orderId, orderStatus);
+        orderId, orderStatus);
       throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
     }
     // analyze pay status
 
     if (!payStatus.equals(PayStatusEnum.WAIT.getCode())) {
       log.error("#pay order# order pay status is not correct , orderId = {} , payStatus = {} ",
-          orderId, payStatus);
+        orderId, payStatus);
       throw new SellException(ResultEnum.ORDER_PAY_STATUS_ERROR);
     }
     // modify pay status

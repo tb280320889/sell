@@ -8,12 +8,15 @@ import com.github.sherlock.sell.exception.SellException;
 import com.github.sherlock.sell.repository.OrderDetailRepository;
 import com.github.sherlock.sell.repository.ProductInfoRepository;
 import com.github.sherlock.sell.service.ProductService;
-import java.util.List;
-import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by TangBin on 2017/8/27.
@@ -28,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Autowired
   public ProductServiceImpl(ProductInfoRepository productInfoRepository,
-      OrderDetailRepository orderDetailRepository) {
+                            OrderDetailRepository orderDetailRepository) {
     this.productInfoRepository = productInfoRepository;
     this.orderDetailRepository = orderDetailRepository;
   }

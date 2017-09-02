@@ -1,14 +1,16 @@
 package com.github.sherlock.sell.service.impl;
 
 import com.github.sherlock.sell.domainobject.ProductCategory;
-import java.util.Arrays;
-import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by TangBin on 2017/8/27.
@@ -35,7 +37,7 @@ public class CategoryServiceImplTest {
   @Test
   public void findByCategoryTypeIn() throws Exception {
     List<ProductCategory> productCategoryList = categoryService
-        .findByCategoryTypeIn(Arrays.asList(1, 2, 4, 5));
+      .findByCategoryTypeIn(Arrays.asList(1, 2, 4, 5));
     Assert.assertNotEquals(0, productCategoryList.size());
   }
 

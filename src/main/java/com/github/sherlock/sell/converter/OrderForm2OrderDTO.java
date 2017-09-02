@@ -1,13 +1,16 @@
 package com.github.sherlock.sell.converter;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import com.github.sherlock.sell.domainobject.OrderDetail;
 import com.github.sherlock.sell.dto.OrderDTO;
 import com.github.sherlock.sell.enums.ResultEnum;
 import com.github.sherlock.sell.exception.SellException;
 import com.github.sherlock.sell.form.OrderForm;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**

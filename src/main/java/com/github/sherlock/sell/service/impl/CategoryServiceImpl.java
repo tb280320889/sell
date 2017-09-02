@@ -3,9 +3,11 @@ package com.github.sherlock.sell.service.impl;
 import com.github.sherlock.sell.domainobject.ProductCategory;
 import com.github.sherlock.sell.repository.ProductCategoryRepository;
 import com.github.sherlock.sell.service.CategoryService;
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by TangBin on 2017/8/27.

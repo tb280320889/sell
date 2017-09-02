@@ -1,10 +1,12 @@
 package com.github.sherlock.sell.domainobject;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * Created by TangBin on 2017/8/27.

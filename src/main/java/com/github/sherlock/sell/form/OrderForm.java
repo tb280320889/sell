@@ -1,7 +1,8 @@
 package com.github.sherlock.sell.form;
 
-import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import lombok.Data;
 
 /**
  * Created by TangBin on 2017/8/29.

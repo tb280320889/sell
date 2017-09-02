@@ -1,7 +1,9 @@
 package com.github.sherlock.sell.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
+
 import lombok.Data;
 
 /**

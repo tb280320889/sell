@@ -55,8 +55,10 @@
 
     <div class="col-md-12 column">
     <#if orderDTO.getOrderStatusEnum().msg == "new order" >
-      <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-primary">finish order</a>
-      <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-danger">cancel order</a>
+      <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button"
+         class="btn btn-default btn-primary">finish order</a>
+      <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button"
+         class="btn btn-default btn-danger">cancel order</a>
     </#if>
     </div>
 

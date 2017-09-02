@@ -3,12 +3,14 @@ package com.github.sherlock.sell.service.impl;
 import com.github.sherlock.sell.dto.OrderDTO;
 import com.github.sherlock.sell.service.OrderService;
 import com.github.sherlock.sell.service.PayService;
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/31.

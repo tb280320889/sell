@@ -1,8 +1,10 @@
 package com.github.sherlock.sell.repository;
 
 import com.github.sherlock.sell.domainobject.OrderDetail;
-import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * Created by TangBin on 2017/8/28.
@@ -10,5 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, String> {
 
-  List<OrderDetail> findByOrOrderId(String buyerOpenId);
+  List<OrderDetail> findByOrderId(String buyerOpenId);
 }

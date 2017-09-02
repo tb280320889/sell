@@ -6,8 +6,8 @@ package com.github.sherlock.sell.enums;
 
 public interface EnumMessage {
 
-  Integer  getCode();
+  Integer getCode();
 
-  String  getMsg();
+  String getMsg();
 
 }

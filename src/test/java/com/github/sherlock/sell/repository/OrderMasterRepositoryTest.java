@@ -1,9 +1,7 @@
 package com.github.sherlock.sell.repository;
 
 import com.github.sherlock.sell.domainobject.OrderMaster;
-import java.math.BigDecimal;
-import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.math.BigDecimal;
+
+import javax.transaction.Transactional;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/28.

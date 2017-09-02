@@ -14,7 +14,7 @@
         <h4>
           SUCCESS!
         </h4> <strong>${msg}!</strong><a
-          href="${url}" class="alert-link">auto skip after 3 seconds</a>
+        href="${url}" class="alert-link">auto skip after 3 seconds</a>
       </div>
     </div>
   </div>

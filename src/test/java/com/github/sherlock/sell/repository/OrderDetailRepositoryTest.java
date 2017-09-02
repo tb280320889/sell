@@ -1,15 +1,18 @@
 package com.github.sherlock.sell.repository;
 
 import com.github.sherlock.sell.domainobject.OrderDetail;
-import java.math.BigDecimal;
-import java.util.List;
-import javax.transaction.Transactional;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by TangBin on 2017/8/28.
@@ -38,8 +41,8 @@ public class OrderDetailRepositoryTest {
   }
 
   @Test
-  public void findByOrOrderId() throws Exception {
-    List<OrderDetail> orderDetailList = orderDetailRepository.findByOrOrderId("111131");
+  public void findByOrderId() throws Exception {
+    List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId("1111");
 
     Assert.assertNotEquals(0, orderDetailList.size());
   }

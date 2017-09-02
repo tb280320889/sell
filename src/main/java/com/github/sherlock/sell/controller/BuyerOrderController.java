@@ -9,11 +9,7 @@ import com.github.sherlock.sell.service.BuyerService;
 import com.github.sherlock.sell.service.OrderService;
 import com.github.sherlock.sell.utils.ResultVOUtil;
 import com.github.sherlock.sell.vo.ResultVO;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/29.
@@ -40,7 +44,7 @@ public class BuyerOrderController {
 
   @Autowired
   public BuyerOrderController(OrderService orderService,
-      BuyerService buyerService) {
+                              BuyerService buyerService) {
     this.orderService = orderService;
     this.buyerService = buyerService;
   }
@@ -50,11 +54,11 @@ public class BuyerOrderController {
    */
   @PostMapping("create")
   public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm,
-      BindingResult bindingResult) {
+                                              BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       log.error("#create order # para is not correct , orderForm = {} ", orderForm);
       throw new SellException(ResultEnum.PARA_ERROR.getCode(),
-          bindingResult.getFieldError().getDefaultMessage());
+        bindingResult.getFieldError().getDefaultMessage());
     }
 
     final OrderDTO orderDTO = OrderForm2OrderDTO.convert(orderForm);
@@ -75,8 +79,8 @@ public class BuyerOrderController {
    */
   @GetMapping("list")
   public ResultVO<List<OrderDTO>> list(@RequestParam("openid") String openid,
-      @RequestParam(value = "page", defaultValue = "0") Integer page,
-      @RequestParam(value = "size", defaultValue = "10") Integer size) {
+                                       @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                       @RequestParam(value = "size", defaultValue = "10") Integer size) {
     if (StringUtils.isEmpty(openid)) {
       log.error("#query order list# openid is null");
       throw new SellException(ResultEnum.PARA_ERROR);
@@ -93,7 +97,7 @@ public class BuyerOrderController {
    */
   @GetMapping("detail")
   public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
-      @RequestParam("orderId") String orderId) {
+                                   @RequestParam("orderId") String orderId) {
 
     final OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
     return ResultVOUtil.success(orderDTO);
@@ -104,7 +108,7 @@ public class BuyerOrderController {
    */
   @PostMapping("cancel")
   public ResultVO cancel(@RequestParam("openid") String openid,
-      @RequestParam("orderId") String orderId) {
+                         @RequestParam("orderId") String orderId) {
 
     buyerService.cancelOrder(openid, orderId);
     return ResultVOUtil.success();

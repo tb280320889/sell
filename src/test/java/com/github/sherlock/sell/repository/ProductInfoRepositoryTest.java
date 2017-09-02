@@ -2,15 +2,18 @@ package com.github.sherlock.sell.repository;
 
 import com.github.sherlock.sell.domainobject.ProductInfo;
 import com.github.sherlock.sell.enums.ProductStatusEnum;
-import java.math.BigDecimal;
-import java.util.List;
-import javax.transaction.Transactional;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 
 /**

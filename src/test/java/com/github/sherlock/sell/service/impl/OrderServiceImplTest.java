@@ -4,10 +4,7 @@ import com.github.sherlock.sell.domainobject.OrderDetail;
 import com.github.sherlock.sell.dto.OrderDTO;
 import com.github.sherlock.sell.enums.OrderStatusEnum;
 import com.github.sherlock.sell.enums.PayStatusEnum;
-import java.util.ArrayList;
-import java.util.List;
-import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/28.

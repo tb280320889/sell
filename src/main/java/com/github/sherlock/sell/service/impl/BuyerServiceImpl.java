@@ -5,9 +5,11 @@ import com.github.sherlock.sell.enums.ResultEnum;
 import com.github.sherlock.sell.exception.SellException;
 import com.github.sherlock.sell.service.BuyerService;
 import com.github.sherlock.sell.service.OrderService;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/29.

@@ -1,10 +1,13 @@
 package com.github.sherlock.sell.domainobject;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * Created by TangBin on 2017/8/27.
