@@ -24,24 +24,24 @@ import java.util.List;
 public class ProductServiceImplTest {
 
   @Autowired
-  private ProductServiceImpl service;
+  private ProductServiceImpl productService;
 
   @Test
   public void findOne() throws Exception {
-    ProductInfo productInfo = service.findOne("1234");
+    ProductInfo productInfo = productService.findOne("1234");
     Assert.assertEquals("1234", productInfo.getProductId());
   }
 
   @Test
   public void findUpAll() throws Exception {
-    List<ProductInfo> productInfoList = service.findUpAll();
+    List<ProductInfo> productInfoList = productService.findUpAll();
     Assert.assertNotEquals(0, productInfoList.size());
   }
 
   @Test
   public void findAll() throws Exception {
     PageRequest request = new PageRequest(0, 2);
-    Page<ProductInfo> productInfoPage = service.findAll(request);
+    Page<ProductInfo> productInfoPage = productService.findAll(request);
     System.out.println(productInfoPage.getTotalElements());
   }
 
@@ -57,9 +57,21 @@ public class ProductServiceImplTest {
     productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
     productInfo.setCategoryType(2);
 
-    ProductInfo result = service.save(productInfo);
+    ProductInfo result = productService.save(productInfo);
     Assert.assertNotNull(result);
 
+  }
+
+  @Test
+  public void onShelf() throws Exception {
+    final ProductInfo productInfo = productService.onShelf("1111111");
+    Assert.assertEquals(ProductStatusEnum.UP, productInfo.getProductStatusEnum());
+  }
+
+  @Test
+  public void offShelf() throws Exception {
+    final ProductInfo productInfo = productService.offShelf("1111111");
+    Assert.assertEquals(ProductStatusEnum.DOWN, productInfo.getProductStatusEnum());
   }
 
 }

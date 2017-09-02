@@ -1,8 +1,13 @@
 package com.github.sherlock.sell.domainobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.sherlock.sell.enums.ProductStatusEnum;
+import com.github.sherlock.sell.utils.EnumUtil;
+
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -57,4 +62,17 @@ public class ProductInfo {
    *
    */
   private Integer categoryType;
+  /**
+   *
+   */
+  private Timestamp createTime;
+  /**
+   *
+   */
+  private Timestamp updateTime;
+
+  @JsonIgnore
+  public ProductStatusEnum getProductStatusEnum() {
+    return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+  }
 }

@@ -23,7 +23,8 @@ public enum ResultEnum implements EnumMessage {
   WECHAT_MP_ERROR(20, "weChat mp error"),
   WXPAY_NOTIFY_MONEY_VERIFY_ERROR(21, "wxpay notify money verify error"),
   ORDER_CANCEL_SUCCESS(22, "order cancel  successfully"),
-  ORDER_FINISH_SUCCESS(22, "order finish  successfully"),;
+  ORDER_FINISH_SUCCESS(22, "order finish  successfully"),
+  PRODUCT_STATUS_ERROR(23, "product_status_error"),;
   private Integer code;
   private String msg;
 
