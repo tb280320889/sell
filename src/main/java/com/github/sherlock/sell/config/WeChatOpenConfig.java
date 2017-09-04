@@ -14,28 +14,28 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
  */
 
 @Component
-public class WeChatMpConfig {
+public class WeChatOpenConfig {
 
   private final WeChatAccountConfig weChatAccountConfig;
 
   @Autowired
-  public WeChatMpConfig(WeChatAccountConfig weChatAccountConfig) {
+  public WeChatOpenConfig(WeChatAccountConfig weChatAccountConfig) {
     this.weChatAccountConfig = weChatAccountConfig;
   }
 
   @Bean
-  public WxMpService wxMpService() {
-    WxMpService wxMpService = new WxMpServiceImpl();
-    wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
-    return wxMpService;
+  public WxMpService wxOpenService() {
+    WxMpService wxOpenService = new WxMpServiceImpl();
+    wxOpenService.setWxMpConfigStorage(wxOpenConfigStorage());
+    return wxOpenService;
   }
 
   @Bean
-  public WxMpConfigStorage wxMpConfigStorage() {
+  public WxMpConfigStorage wxOpenConfigStorage() {
     final WxMpInMemoryConfigStorage wxMpInMemoryConfigStorage = new WxMpInMemoryConfigStorage();
 
-    wxMpInMemoryConfigStorage.setAppId(weChatAccountConfig.getMpAppId());
-    wxMpInMemoryConfigStorage.setSecret(weChatAccountConfig.getMpAppSecret());
+    wxMpInMemoryConfigStorage.setAppId(weChatAccountConfig.getOpenAppId());
+    wxMpInMemoryConfigStorage.setSecret(weChatAccountConfig.getOpenAppSecret());
     return wxMpInMemoryConfigStorage;
   }
 

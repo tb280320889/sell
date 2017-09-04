@@ -2,6 +2,8 @@ package com.github.sherlock.sell.domainobject;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,6 +36,16 @@ public class ProductCategory {
    */
   private Integer categoryType;
 
+  /**
+   *
+   */
+  private Timestamp createTime;
+
+  /**
+   *
+   */
+  private Timestamp updateTime;
+
   //FIXME need attention!
   public ProductCategory() {
   }
@@ -43,14 +55,5 @@ public class ProductCategory {
     this.categoryType = categoryType;
   }
 
-  //  /**
-//   *
-//   */
-//  private TimeStamp createTime;
-//
-//  /**
-//   *
-//   */
-//  private TimeStamp updateTime;
 
 }

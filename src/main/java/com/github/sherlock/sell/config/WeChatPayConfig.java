@@ -5,13 +5,13 @@ import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by TangBin on 2017/8/31.
  */
 
-@Configuration
+@Component
 public class WeChatPayConfig {
 
   private final WeChatAccountConfig weChatAccountConfig;

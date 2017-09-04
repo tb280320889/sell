@@ -56,7 +56,7 @@ public class ProductInfo {
   /**
    *
    */
-  private Integer productStatus;
+  private Integer productStatus = ProductStatusEnum.UP.getCode();
 
   /**
    *

@@ -1,5 +1,6 @@
 package com.github.sherlock.sell.controller;
 
+import com.github.sherlock.sell.config.ProjectUrlConfig;
 import com.github.sherlock.sell.enums.ResultEnum;
 import com.github.sherlock.sell.exception.SellException;
 
@@ -28,9 +29,15 @@ public class WeChatController {
 
   private final WxMpService wxMpService;
 
+  private final WxMpService wxOpenService;
+
+  private final ProjectUrlConfig projectUrlConfig;
+
   @Autowired
-  public WeChatController(WxMpService wxMpService) {
+  public WeChatController(WxMpService wxMpService, WxMpService wxOpenService, ProjectUrlConfig projectUrlConfig) {
     this.wxMpService = wxMpService;
+    this.wxOpenService = wxOpenService;
+    this.projectUrlConfig = projectUrlConfig;
   }
 
   /**
@@ -41,7 +48,7 @@ public class WeChatController {
   @GetMapping("authorize")
   public String authorize(@RequestParam("returnUrl") String returnUrl) {
 
-    String url = "https://sherlock.natapp4.cc/sell/weChat/userInfo";
+    String url = projectUrlConfig.getWeChatWpAuthorize() + "sell/weChat/userInfo";
 
     //1.config
     final String redirectUrl = wxMpService
@@ -72,5 +79,37 @@ public class WeChatController {
     final String openId = wxMpOAuth2AccessToken.getOpenId();
     return "redirect:" + state + "?openid=" + openId;
   }
+
+  private static final String QR_AUTHORIZE = "qrAuthorize";
+
+  @GetMapping(QR_AUTHORIZE)
+  public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
+
+    String url = projectUrlConfig.getWeChatOpenAuthorize() + "sell/weChat/qrUserInfo";
+    final String redirectUrl = wxOpenService.buildQrConnectUrl(url, WxConsts.QRCONNECT_SCOPE_SNSAPI_LOGIN, URLEncoder.encode(returnUrl));
+
+    return "redirect:" + redirectUrl;
+  }
+
+  private static final String QR_USER_INFO = "qrUserInfo";
+
+  @GetMapping(QR_USER_INFO)
+  public String qrUserInfo(@RequestParam("code") String code, @RequestParam("state") String returnUrl) {
+    WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
+
+    try {
+      wxMpOAuth2AccessToken = wxOpenService.oauth2getAccessToken(code);
+    } catch (WxErrorException e) {
+      log.error("#weChat web auth", e);
+      throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(), e.getError().getErrorMsg());
+    }
+
+    log.info("wxMpOAuth2AccessToken={}", wxMpOAuth2AccessToken);
+    final String openId = wxMpOAuth2AccessToken.getOpenId();
+
+    return "redirect:" + returnUrl + "?openid=" + openId;
+
+  }
+
 
 }

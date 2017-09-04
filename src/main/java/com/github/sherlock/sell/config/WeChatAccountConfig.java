@@ -1,7 +1,7 @@
 package com.github.sherlock.sell.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-@Configuration
+@Component
 @ConfigurationProperties(prefix = "weChat")
 public class WeChatAccountConfig {
 
@@ -20,5 +20,7 @@ public class WeChatAccountConfig {
   private String mchKey;
   private String keyPath;
   private String notifyUrl;
+  private String openAppId;
+  private String openAppSecret;
 
 }

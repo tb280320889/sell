@@ -9,6 +9,10 @@ spring:
   output:
     ansi:
       enabled: always
+  redis:
+    host: 192.168.1.8
+    port: 6379
+    password:
 #  jackson:
 #    default-property-inclusion: non_null
 server:
@@ -22,3 +26,10 @@ weChat:
   mchKey: 322
   keyPath: 323
   notifyUrl: 232323
+  openAppId:
+  openAppSecret:
+
+projectUrl:
+  weChatWpAuthorize: https://sherlock.natapp4.cc/
+  weChatOpenAuthorize: https://sherlock.natapp4.cc/
+  sellUrl: https://sherlock.natapp4.cc/
