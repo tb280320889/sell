@@ -1,15 +1,14 @@
-package com.github.sherlock.sell.service;
+package com.github.sherlock.sell.service.impl;
 
 import com.github.sherlock.sell.domainobject.SellerInfo;
-
+import com.github.sherlock.sell.service.SellerService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/9/4.

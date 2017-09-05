@@ -4,7 +4,7 @@ import com.github.sherlock.sell.dto.OrderDTO;
 import com.github.sherlock.sell.enums.ResultEnum;
 import com.github.sherlock.sell.exception.SellException;
 import com.github.sherlock.sell.service.OrderService;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/31.
@@ -48,7 +46,6 @@ public class SellerOrderController {
   }
 
   /**
-   *
    * @param orderId
    * @return
    */
@@ -72,7 +69,6 @@ public class SellerOrderController {
   }
 
   /**
-   *
    * @param orderId
    * @param map
    * @return
@@ -95,7 +91,6 @@ public class SellerOrderController {
   }
 
   /**
-   *
    * @param orderId
    * @param map
    * @return
@@ -112,6 +107,7 @@ public class SellerOrderController {
     } catch (SellException e) {
       log.error("#seller finish order# can't not find order");
       map.put("msg", e.getMessage());
+
 
       return new ModelAndView("common/error", map);
     }

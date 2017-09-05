@@ -28,6 +28,8 @@ weChat:
   notifyUrl: 232323
   openAppId:
   openAppSecret:
+  templateId:
+    orderStatus: 233
 
 projectUrl:
   weChatWpAuthorize: https://sherlock.natapp4.cc/

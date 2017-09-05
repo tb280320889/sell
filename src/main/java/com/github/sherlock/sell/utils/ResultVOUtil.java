@@ -12,7 +12,6 @@ public class ResultVOUtil {
   }
 
   /**
-   *
    * @param o
    * @return
    */
@@ -28,7 +27,12 @@ public class ResultVOUtil {
     return success(null);
   }
 
-  public static final ResultVO error(Integer code, String msg) {
+  /**
+   * @param code
+   * @param msg
+   * @return
+   */
+  public static ResultVO error(Integer code, String msg) {
     ResultVO resultVO = new ResultVO();
     resultVO.setCode(code);
     resultVO.setMsg(msg);

@@ -44,6 +44,12 @@ public class SellerUserController {
 
   private static final String LOGIN = "login";
 
+  /**
+   *
+   * @param sellerService
+   * @param stringRedisTemplate
+   * @param projectUrlConfig
+   */
   @Autowired
   public SellerUserController(SellerService sellerService, StringRedisTemplate stringRedisTemplate, ProjectUrlConfig projectUrlConfig) {
     this.sellerService = sellerService;
@@ -69,12 +75,11 @@ public class SellerUserController {
 
     //set token into redis
     final String token = UUID.randomUUID().toString();
-    Integer expire = RedisConstant.EXPIRE;
-    stringRedisTemplate.opsForValue().set(String.format(RedisConstant.TOKEN_PREFIX, token), openid, expire, TimeUnit.SECONDS);
-
+    stringRedisTemplate.opsForValue()
+      .set(String.format(RedisConstant.TOKEN_PREFIX, token), openid, RedisConstant.EXPIRE, TimeUnit.SECONDS);
 
     //set token to cookie
-    CookieUtil.set(httpServletResponse, CookieConstant.TOKEN, token, expire);
+    CookieUtil.set(httpServletResponse, CookieConstant.TOKEN, token, RedisConstant.EXPIRE);
     return new ModelAndView("redirect:" + projectUrlConfig.getSellUrl() + "sell/seller/order/list");
   }
 
@@ -91,7 +96,8 @@ public class SellerUserController {
     final Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
     if (cookie != null) {
       // delete info in redis
-      stringRedisTemplate.opsForValue().getOperations().delete(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
+      stringRedisTemplate.opsForValue().getOperations()
+        .delete(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
       // delete cookie
       CookieUtil.set(response, CookieConstant.TOKEN, null, 0);
     }

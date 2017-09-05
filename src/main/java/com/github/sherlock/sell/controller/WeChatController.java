@@ -3,7 +3,11 @@ package com.github.sherlock.sell.controller;
 import com.github.sherlock.sell.config.ProjectUrlConfig;
 import com.github.sherlock.sell.enums.ResultEnum;
 import com.github.sherlock.sell.exception.SellException;
-
+import lombok.extern.slf4j.Slf4j;
+import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URLEncoder;
-
-import lombok.extern.slf4j.Slf4j;
-import me.chanjar.weixin.common.api.WxConsts;
-import me.chanjar.weixin.common.exception.WxErrorException;
-import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 
 /**
  * Created by TangBin on 2017/8/30.
@@ -41,7 +39,6 @@ public class WeChatController {
   }
 
   /**
-   *
    * @param returnUrl
    * @return
    */
@@ -61,7 +58,6 @@ public class WeChatController {
   }
 
   /**
-   *
    * @param code
    * @param state
    * @return
@@ -82,6 +78,10 @@ public class WeChatController {
 
   private static final String QR_AUTHORIZE = "qrAuthorize";
 
+  /**
+   * @param returnUrl
+   * @return
+   */
   @GetMapping(QR_AUTHORIZE)
   public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
 
@@ -93,9 +93,14 @@ public class WeChatController {
 
   private static final String QR_USER_INFO = "qrUserInfo";
 
+  /**
+   * @param code
+   * @param returnUrl
+   * @return
+   */
   @GetMapping(QR_USER_INFO)
   public String qrUserInfo(@RequestParam("code") String code, @RequestParam("state") String returnUrl) {
-    WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
+    WxMpOAuth2AccessToken wxMpOAuth2AccessToken;
 
     try {
       wxMpOAuth2AccessToken = wxOpenService.oauth2getAccessToken(code);

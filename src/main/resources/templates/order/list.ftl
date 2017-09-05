@@ -73,6 +73,33 @@
     </div>
   </div>
 </div>
+
+<script>
+  var websocket = null;
+  if ('webSocket' in window) {
+    websocket = new WebSocket('ws://');
+  } else {
+    alert('web browser does not support webSocket')
+  }
+  websocket.onopen = function (event) {
+    console.log('connection activated');
+  }
+  websocket.onclose = function (event) {
+    console.log('connection closed');
+  }
+  websocket.onmessage = function (event) {
+    console.log('received message: ' + event.data);
+  }
+  websocket.onerror = function () {
+    alert('webSocket error');
+
+  }
+  window.onbeforeunload = function () {
+    websocket.close();
+  }
+
+
+</script>
 </body>
 
 </html>

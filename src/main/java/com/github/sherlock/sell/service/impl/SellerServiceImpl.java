@@ -1,7 +1,8 @@
-package com.github.sherlock.sell.service;
+package com.github.sherlock.sell.service.impl;
 
 import com.github.sherlock.sell.domainobject.SellerInfo;
 import com.github.sherlock.sell.repository.SellerInfoRepository;
+import com.github.sherlock.sell.service.SellerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

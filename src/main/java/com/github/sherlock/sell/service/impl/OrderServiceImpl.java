@@ -15,8 +15,10 @@ import com.github.sherlock.sell.repository.OrderMasterRepository;
 import com.github.sherlock.sell.service.OrderService;
 import com.github.sherlock.sell.service.PayService;
 import com.github.sherlock.sell.service.ProductService;
+import com.github.sherlock.sell.service.PushMessageService;
+import com.github.sherlock.sell.service.websocket.WebSocket;
 import com.github.sherlock.sell.utils.KeyUtil;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,14 +27,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.transaction.Transactional;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/8/28.
@@ -45,16 +44,28 @@ public class OrderServiceImpl implements OrderService {
   private final OrderDetailRepository orderDetailRepository;
   private final OrderMasterRepository orderMasterRepository;
   private final PayService payService;
+  private final PushMessageService pushMessageService;
+  private final WebSocket webSocket;
 
 
+  /**
+   * @param productService
+   * @param orderDetailRepository
+   * @param orderMasterRepository
+   * @param payService
+   * @param pushMessageService
+   * @param webSocket
+   */
   @Autowired
   public OrderServiceImpl(ProductService productService,
                           OrderDetailRepository orderDetailRepository,
-                          OrderMasterRepository orderMasterRepository, PayService payService) {
+                          OrderMasterRepository orderMasterRepository, PayService payService, PushMessageService pushMessageService, WebSocket webSocket) {
     this.productService = productService;
     this.orderDetailRepository = orderDetailRepository;
     this.orderMasterRepository = orderMasterRepository;
     this.payService = payService;
+    this.pushMessageService = pushMessageService;
+    this.webSocket = webSocket;
   }
 
   @Override
@@ -63,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 
     BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
 
-//    List<CartDTO> cartDTOList = new ArrayList<>();
+    //    List<CartDTO> cartDTOList = new ArrayList<>();
 
     // 1. query product (quantity,price)
     List<OrderDetail> orderDetailList = orderDTO.getOrderDetailList();
@@ -99,6 +110,9 @@ public class OrderServiceImpl implements OrderService {
       .collect(Collectors.toList());
 
     productService.decreaseStock(cartDTOList);
+
+    //send webSocket message
+    webSocket.sendMessage("there is a new order");
 
     return orderDTO;
   }
@@ -203,6 +217,9 @@ public class OrderServiceImpl implements OrderService {
       log.error("finish order# update order failed , orderId = {}", orderMaster.getOrderId());
       throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
     }
+
+    //push weChat template message
+    pushMessageService.orderStatus(orderDTO);
     return orderDTO;
   }
 
