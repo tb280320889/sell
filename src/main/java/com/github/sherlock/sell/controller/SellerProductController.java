@@ -7,9 +7,10 @@ import com.github.sherlock.sell.form.ProductForm;
 import com.github.sherlock.sell.service.CategoryService;
 import com.github.sherlock.sell.service.ProductService;
 import com.github.sherlock.sell.utils.KeyUtil;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
-
-import javax.validation.Valid;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by TangBin on 2017/9/2.
@@ -53,7 +51,6 @@ public class SellerProductController {
   }
 
   /**
-   *
    * @param page
    * @param size
    * @param map
@@ -71,7 +68,6 @@ public class SellerProductController {
   }
 
   /**
-   *
    * @param productId
    * @param vMap
    * @return
@@ -89,7 +85,6 @@ public class SellerProductController {
   }
 
   /**
-   *
    * @param productId
    * @param vMap
    * @return
@@ -107,7 +102,6 @@ public class SellerProductController {
   }
 
   /**
-   *
    * @param productId
    * @param vMap
    * @return
@@ -127,11 +121,12 @@ public class SellerProductController {
   }
 
   /**
-   *  @param productForm
+   * @param productForm
    * @param bindingResult
    * @param vMap
    */
   @PostMapping("save")
+  @CacheEvict(value = {"product"}, key = "123")
   public ModelAndView save(@Valid ProductForm productForm, BindingResult bindingResult, Map<String, Object> vMap) {
     if (bindingResult.hasErrors()) {
       vMap.put("msg", bindingResult.getFieldError().getDefaultMessage());

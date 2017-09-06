@@ -8,9 +8,9 @@ import com.github.sherlock.sell.utils.ResultVOUtil;
 import com.github.sherlock.sell.vo.ProductInfoVO;
 import com.github.sherlock.sell.vo.ProductVO;
 import com.github.sherlock.sell.vo.ResultVO;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * Created by TangBin on 2017/8/28.
  */
 @RestController
-@RequestMapping("/buyer/product")
+@RequestMapping("buyer/product")
 public class BuyerProductController {
 
   private final ProductService productService;
@@ -37,10 +37,10 @@ public class BuyerProductController {
   }
 
   /**
-   *
    * @return
    */
   @GetMapping("/list")
+  @Cacheable(value = {"product"}, key = "123")
   public ResultVO list() {
     // 1. select all products which are on shelf
     List<ProductInfo> productInfoList = productService.findUpAll();
